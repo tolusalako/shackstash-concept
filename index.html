@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <div th:replace="fragments/head :: head">
+            <div th:fragment="head">
+                <!--Import jQuery before materialize.js-->
+                <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+                <script type="text/javascript" src="js/nouislider.min.js"></script>
+                <script type="text/javascript" src="js/init.js"></script>
+                <!--Import Google Icon Font-->
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+                <!--Import materialize.css-->
+                <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" media="screen,projection"/>
+                <link type="text/css" rel="stylesheet" href="css/init.css" th:href="@{/css/init.css}" media="screen,projection"/>
+            <!--Let browser know website is optimized for mobile-->
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/wNumb.js"></script>
+    <script type="text/javascript" src="js/listing.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" th:href="@{/css/nouislider.min.css}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/search.css" th:href="@{/css/search.css}" media="screen,projection"/>
+
+    <title>Search ShackStash</title>
+</head>
+
+<body>
+    <div th:replace="fragments/header :: header">
+        <nav id="main-nav" class="nav-extended teal">
+            <div class="nav-wrapper teal">
+                <a href="/" class="brand-logo">ShackStash</a>
+                <ul class="right hide-on-med-and-down">
+                    <li class="nav-option active"><a href="index.html" id="find-housing"><i class="material-icons right">search</i>Find Housing</a></li>
+                    <li class="nav-option"><a href="listing.html" th:href="@{/lsiting}"><i class="material-icons right">dashboard</i>Listing</a></li>
+                    <li class="nav-option"><a href="#" th:href="@{/profile}"><i class="material-icons">person</i></a></li>
+                    <!-- <li class="nav-option"><a id="nav-messages" href="/messages" th:href="@{/messages}"><i class="material-icons" title="Messages">drafts</i></a></li> -->
+                    <li class="nav-option"><a id="nav-messages" href="#" th:href="@{/messages}"><i class="material-icons" style="color: #FFB300;" title="Messages">mail</i></a></li>
+                    <li class="nav-option"><a href="#" th:href="@{/favorites}"><i class="material-icons">favorite</i></a></li>
+                </ul>
+                <!-- <ul class="side-nav" id="mobile-demo">
+                  <li><a href="sass.html">Sass</a></li>
+                  <li><a href="badges.html">Components</a></li>
+                  <li><a href="collapsible.html">JavaScript</a></li>
+                </ul> -->
+                <ul class="tabs tabs-transparent hide-on-med-and-down" id="nav-tabs">
+                  <li class="tab col s12 m3 l3">
+                    <form class="row">
+                        <div class="input-field search-wrapper card in-line">
+                          <input id="nav-search" type="search">
+                          <label for="nav-search">
+                              <i id="nav-search-icon" class="material-icons hide">search</i>
+                            <span id="nav-search-label">Search ShackStash</span>
+                          </label>
+                        </div>
+                    </form>
+                  </li>
+                  <li class="tab"><a href="#test2">SHACK PICKS</a></li>
+                  <li class="tab"><a href="#test3">NEAR ME</a></li>
+                  <li class="tab"><a href="#test4">HOME FINDER</a></li>
+                  <li class="tab right"><a><i class="material-icons" style="">my_location</i></a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- <div id="test2" class="col s12">Test 2</div>
+        <div id="test3" class="col s12">Test 3</div>
+        <div id="test4" class="col s12">Test 4</div> -->
+    </div>
+    <div th:replace="fragments/login :: login">
+        <!-- Login Modal -->
+        <div id="modal-login" class="modal">
+            <div class="modal-content">
+                <h4>Cool Logo</h4>
+                <form>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                </form>
+                <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
+                <a href="#!" class="modal-action waves-effect waves-green btn-flat ">Submit</a>
+                <div class="hr-sect">OR</div>
+                <center>
+                    <a id="facebook-login" class="hoverable clickable"><img width="100%" height="100%" src="images/res/fb.png" th:src="@{/res/fb.png}"></a>
+                </center>
+    </div>
+    </div>
+        <script th:inline="javascript">
+        /*<![CDATA[*/
+            var authenticated = /*[[${#authorization?.expression('isAuthenticated()') or false}]]*/ false;
+            authenticated = Boolean(authenticated);
+        /*]]>*/
+        </script>
+    </div>
+<!-- Page Layout here -->
+<!-- <div class="container"> -->
+<div class="row">
+    <div class="col s12 m3 l2">
+        <ul class="collection">
+            <li class="collection-item">
+                <span class="card-title">Refine Search</span>
+                <p>
+                    <input type="checkbox" id="refine-option-1" checked="roommate" />
+                    <label for="refine-option-1">Shared Room</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="refine-option-2" checked="housemate" />
+                    <label for="refine-option-2">Private Room</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="refine-option-3" checked="couchsurf" />
+                    <label for="refine-option-3">Couch Surf</label>
+                </p>
+            </li>
+            <li class="collection-item">
+                <span class="card-title">Price Range</span>
+                <p>
+                    <div class="sliders" id="price-range"></div>
+                </p>
+            </li>
+            <li class="collection-item collection-item-rating">
+                <span class="card-title">Ratings</span>
+                <p>
+                    <div class="center">
+                        <span id="review-rating">
+                            <i id="star-1" class="material-icons small review-rating-star">star_border</i>
+                            <i id="star-2" class="material-icons small review-rating-star">star_border</i>
+                            <i id="star-3" class="material-icons small review-rating-star">star_border</i>
+                            <i id="star-4" class="material-icons small review-rating-star">star_border</i>
+                            <i id="star-5" class="material-icons small review-rating-star">star_border</i>
+                        </span>
+                    </div>
+                </p>
+            </li>
+            <li class="collection-item">
+                <span class="card-title">Distance from</span>
+                <span class="card-title">Gym</span>
+                <p>
+                    <div class="sliders" id="work"></div>
+                </p>
+            </li>
+            <li class="collection-item collection-item-options">
+                <span class="card-title">Additional Options</span>
+                <p>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Gym">fitness_center</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Pool">pool</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="No Smoking">smoke_free</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Utilities Included">power</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Parking Available">drive_eta</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Pets Allowed">pets</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Accessible">accessible</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Child Friendly">child_friendly</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="AC">ac_unit</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Security Gate">security</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Hot Tub">hot_tub</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="On Campus">school</i>
+                    </div>
+                    <div class="chip">
+                        <i class="material-icons clickable" title="Couch Surf">weekend</i>
+                    </div>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="col s12 m9 l10">
+        <!-- <div class="container"> -->
+        <div class="home-list">
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/entity1.jpg">
+                            <span class="card-title alpha-bg cap">Beautiful Apartment in NYC</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star_half</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$1,500</b>
+                                <br>
+                                <label class="deposit right">Deposit: $500</label>
+                            </a>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/entity2.jpg">
+                            <span class="card-title alpha-bg cap">Large apartment in San Francisco</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star_half</i>
+                            <i class="material-icons small listing-rating">star_border</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$2,500</b>
+                                <br>
+                                <label class="deposit right">Deposit: $700</label>
+                            </a>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/entity3.jpg">
+                            <span class="card-title alpha-bg cap">Small living space in L.A.</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$1,000</b>
+                                <br>
+                                <label class="deposit right">Deposit: $250</label>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/living-room1.jpg">
+                            <span class="card-title alpha-bg cap">Beautiful Loft at Aldrich Park</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star_half</i>
+                            <i class="material-icons small listing-rating">star_border</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$1,200</b>
+                                <br>
+                                <label class="deposit right">Deposit: $300</label>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/entity4.jpg">
+                            <span class="card-title alpha-bg cap">Couch Surf w/ great view</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star_border</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$60</b>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/home1.jpg">
+                            <span class="card-title alpha-bg cap">The Dome</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$3,200</b>
+                                <br>
+                                <label class="deposit right">Deposit: $700</label>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/entity6.jpg">
+                            <span class="card-title alpha-bg cap">Beautiful Home with a Great Kitchen</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$2,200</b>
+                                <br>
+                                <label class="deposit right">Deposit: $600</label>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/entity7.jpg">
+                            <span class="card-title alpha-bg cap">Nice apartment in DTLA</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$900</b>
+                                <br>
+                                <label class="deposit right">Deposit: $150</label>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card result-card hoverable">
+                        <div class="card-image">
+                            <img class="profile" src="images/housing/entity8.jpg">
+                            <span class="card-title alpha-bg cap">Huge Space</span>
+                        </div>
+                        <div class="card-action">
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star</i>
+                            <i class="material-icons small listing-rating">star_half</i>
+                            <i class="material-icons small listing-rating">star_border</i>
+                            <i class="material-icons small listing-rating">star_border</i>
+                            <a href="buy" class="secondary-content">
+                                <b class="price right">$4,000</b>
+                                <br>
+                                <label class="deposit right">Deposit: $650</label>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixed-action-btn horizontal">
+            <a class="btn-floating waves-effect waves-light btn-large teal">
+                <i class="large material-icons">cached</i>
+            </a>
+        </div>
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+</div>
+<div th:replace="fragments/footer :: footer">
+    <!-- PlaceHolder -->
+</div>
+</body>
+</html>
