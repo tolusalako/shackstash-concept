@@ -1,0 +1,108 @@
+.tabs {
+  background-color: white !important;
+}
+
+.nav {
+  background-color: #26a69a !important;
+}
+
+.tabs > .tab > a{
+  color: black !important;
+}
+
+.tabs > .tab > a.active {
+  color: #26a69a !important;
+}
+
+
+.tab .material-icons{
+  /*margin-top: -25%;*/
+  margin-top: -0.5rem;
+}
+
+.cap {
+  text-transform: capitalize;
+}
+
+.hoverable{
+    cursor: pointer;
+}
+
+span.title {
+    font-size: 17px !important;
+}
+
+
+ .input-field .material-icons {
+   color: #26a69a;
+ }
+
+ .input-field .prefix {
+    position: absolute;
+    width: 3rem;
+    font-size: 2rem;
+    transition: color .2s;
+}
+
+.hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+
+.hr-sect {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.35);
+	margin: 8px 0px;
+}
+.hr-sect::before,
+.hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 8px;
+}
+
+.material-icons.in-line {
+    padding-top: 15;
+}
+
+.card-title.alpha-bg {
+        width: 100%;
+        text-shadow: 0 1px black;
+        background: #333; /* For browsers that don't support RGBA */
+        background: rgba(0,0,0,0.20);
+        padding: 4px 8px;
+}
+
+#modal-login {
+    width: 20%;
+}
+
+/*// Class for when element is above threshold
+.pin-top {
+  position: relative;
+}
+
+// Class for when element is below threshold
+.pin-bottom {
+  position: relative;
+}
+
+// Class for when element is pinned
+.pinned {
+  position: fixed !important;
+}
+
+div.carousel, div.carousel-fixed-item, div.carousel-item, img{
+  position: static !important;
+}*/

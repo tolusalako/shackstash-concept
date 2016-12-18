@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <head>
+      <div th:replace="fragments/head :: head">
+              <div th:fragment="head">
+                  <!--Import jQuery before materialize.js-->
+                  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+                  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+                  <script type="text/javascript" src="js/nouislider.min.js"></script>
+                  <script type="text/javascript" src="js/init.js"></script>
+                  <!--Import Google Icon Font-->
+                  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+                  <!--Import materialize.css-->
+                  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" media="screen,projection"/>
+                  <link type="text/css" rel="stylesheet" href="css/init.css" th:href="@{/css/init.css}" media="screen,projection"/>
+              <!--Let browser know website is optimized for mobile-->
+              <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          </div>
+      </div>
+
+  <script type="text/javascript" src="js/listing.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/listing.css" th:href="@{/css/init.css}" media="screen,projection"/>
+    </head>
+    <title>ShackStash Listing</title>
+</head>
+
+<body>
+  <div th:replace="fragments/header :: header">
+      <nav id="main-nav" class="nav-extended teal">
+          <div class="nav-wrapper teal">
+              <a href="#" class="brand-logo">ShackStash</a>
+              <ul class="right hide-on-med-and-down">
+                  <li class="nav-option active"><a href="search.html" id="find-housing"><i class="material-icons right">search</i>Find Housing</a></li>
+                  <li class="nav-option"><a href="listing.html" th:href="@{/lsiting}"><i class="material-icons right">dashboard</i>Listing</a></li>
+                  <li class="nav-option"><a href="#" th:href="@{/profile}"><i class="material-icons">person</i></a></li>
+                  <!-- <li class="nav-option"><a id="nav-messages" href="/messages" th:href="@{/messages}"><i class="material-icons" title="Messages">drafts</i></a></li> -->
+                  <li class="nav-option"><a id="nav-messages" href="#" th:href="@{/messages}"><i class="material-icons" style="color: #FFB300;" title="Messages">mail</i></a></li>
+                  <li class="nav-option"><a href="#" th:href="@{/favorites}"><i class="material-icons">favorite</i></a></li>
+              </ul>
+              <!-- <ul class="side-nav" id="mobile-demo">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+              </ul> -->
+              <ul class="tabs tabs-transparent hide-on-med-and-down" id="nav-tabs">
+                <li class="tab col s12 m3 l3">
+                  <form class="row">
+                      <div class="input-field search-wrapper card in-line">
+                        <input id="nav-search" type="search">
+                        <label for="nav-search">
+                            <i id="nav-search-icon" class="material-icons hide">search</i>
+                          <span id="nav-search-label">Search ShackStash</span>
+                        </label>
+                      </div>
+                  </form>
+                </li>
+                <li class="tab"><a href="#test2">SHACK PICKS</a></li>
+                <li class="tab"><a href="#test3">NEAR ME</a></li>
+                <li class="tab"><a href="#test4">HOME FINDER</a></li>
+                <li class="tab right"><a><i class="material-icons" style="">my_location</i></a></li>
+              </ul>
+          </div>
+      </nav>
+      <!-- <div id="test2" class="col s12">Test 2</div>
+      <div id="test3" class="col s12">Test 3</div>
+      <div id="test4" class="col s12">Test 4</div> -->
+  </div>
+      <div class="container">
+        <div class="col s12 m7">
+          <div class="row">
+            <table>
+                <tbody>
+                    <tr class="selected">
+                        <br>
+                       <td class="center">
+                           <img id="preview-image" src="images/housing/living-room1.jpg" width="90%">
+                       </td>
+                    </tr>
+                    <tr class="options">
+                        <td class="center">
+                            <img class="hoverable option active" seq="0" src="images/housing/living-room1.jpg" height="100px" width = "100px" hspace="5">
+                            <img class="hoverable option" seq="1" src="images/housing/bathroom1.jpg" height="100px" width = "100px" hspace="5">
+                            <img class="hoverable option" seq="2" src="images/housing/kitchen1.jpg" height="100px" width = "100px" hspace="5">
+                            <img class="hoverable option" seq="3" src="images/housing/bathroom2.jpg" height="100px" width = "100px" hspace="5">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <script>
+              // $('.carousel.carousel-slider').carousel({
+              //   full_width: true,
+              // });
+            </script>
+          </div>
+          <div class="col s12 m7">
+            <h5 id="title">Aldrich Park Irvine, CA 92617</h5>
+            <div class="card horizontal medium">
+                <div class="card-image hide-on-med-and-down" style="width:150%;">
+                    <div id="map"></div>
+                    <script async defer
+                      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDILDytoHUxboNpQlpKp0Ene2ldb2zyp6M&callback=initMap">
+                   </script>
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>
+                            <span class="card-title">
+                              <a class="review clickable">
+                                <i class="material-icons small listing-rating">star</i>
+                                <i class="material-icons small listing-rating">star</i>
+                                <i class="material-icons small listing-rating">star</i>
+                                <i class="material-icons small listing-rating">star_half</i>
+                                <i class="material-icons small listing-rating">star_border</i>
+                              </a>
+                              <a href="buy" class="secondary-content">
+                                  <b class="price">$2,500</b>
+                              </a>
+                              <br>
+                            </span>
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, nunc vehicula quisque lacus in, phasellus mauris non quis vestibulum tincidunt, sit a nunc. Donec elementum, lorem metus viverra elit ultrices, lectus enim a erat suspendisse vel. Non dolor non sed mauris hendrerit pulvinar. Commodo maecenas, sed adipiscing curabitur ac, diam venenatis, curabitur libero cursus eget elit tempor et, suspendisse massa odio tellus dignissim in.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="card-action">
+                        <p class="option">
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Gym">fitness_center</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Pool">pool</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="No Smoking">smoke_free</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Utilities Included">power</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Parking Available">drive_eta</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Pets Allowed">pets</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Accessible">accessible</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Child Friendly">child_friendly</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="AC">ac_unit</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Security Gate">security</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Hot Tub">hot_tub</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="On Campus">school</i>
+                            </div>
+                            <div class="chip">
+                              <i class="material-icons clickable" title="Couch Surf">weekend</i>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="comments">
+            <h5>Reviews</h5>
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <img src="images/eisah.jpg" th:src="@{/images/eisah.jpg}" alt="" class="circle">
+                    <span class="title"><b>Eisah J.</b>
+                        <i class="material-icons in-line tiny grey-fg">star</i>
+                        <i class="material-icons in-line tiny grey-fg">star</i>
+                        <i class="material-icons in-line tiny grey-fg">star</i>
+                        <i class="material-icons in-line tiny grey-fg">star</i>
+                        <i class="material-icons in-line tiny grey-fg">star_border</i>
+                    </span>
+                    <p>
+                        "I lived there for 2 years. Enjoyed every second of it."
+                    </p>
+                    <div class="secondary-content">
+                        <p>
+                                <i class="thumb clickable material-icons selected" title="Like">thumb_up</i><span class="badge">100</span>
+                        </p>
+                        <p >
+                                <i class="thumb clickable material-icons" title="Dislike">thumb_down</i><span class="badge">4</span>
+                        </p>
+                    </div>
+                </li>
+                <li class="collection-item avatar">
+                    <img src="images/parker.jpg" th:src="@{/images/parker.jpg}" alt="" class="circle">
+                    <span class="title"><b>Bryant P.</b>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star_half</i>
+                        <i class="material-icons tiny grey-fg">star_border</i>
+                    </span>
+                    <p>"I couch surfed there last weekend. It was lit!"
+                    </p>
+                    <a href="#!" class="secondary-content">
+                        <p>
+                            <i class="thumb clickable material-icons selected">thumb_up</i><span class="badge">5</span>
+                        </p>
+                        <p>
+                            <i class="thumb clickable material-icons">thumb_down</i><span class="badge">0</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="collection-item avatar">
+                    <img src="images/adriel.jpg" th:src="@{/images/adriel.jpg}" alt="" class="circle">
+                    <span class="title"><b>Adriel P.</b>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star</i>
+                    </span>
+                    <p>"I loved living there!"
+                    </p>
+                    <a href="#!" class="secondary-content">
+                        <p>
+                            <i class="thumb clickable material-icons">thumb_up</i><span class="badge">67</span>
+                        </p>
+                        <p>
+                            <i class="thumb clickable material-icons selected">thumb_down</i><span class="badge">1</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="collection-item avatar">
+                    <img src="images/austin.jpg" th:src="@{/images/austin.jpg}" alt="" class="circle">
+                    <span class="title"><b>Austin D.</b>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star</i>
+                        <i class="material-icons tiny grey-fg">star_half</i>
+                        <i class="material-icons tiny grey-fg">star_border</i>
+                        <i class="material-icons tiny grey-fg">star_border</i>
+                    </span>
+                    <p>"The place sucked. Smelled like onions and rats"
+                    </p>
+                    <a href="#!" class="secondary-content">
+                        <p>
+                            <i class="thumb clickable material-icons selected">thumb_up</i><span class="badge">0</span>
+                        </p>
+                        <p>
+                            <i class="thumb clickable material-icons">thumb_down</i><span class="badge">4</span>
+                        </p>
+                    </a>
+                </li>
+            </ul>
+            <div class="center">
+                <a class="waves-effect waves-light btn"><i class="material-icons right">cached</i>Load More</a>
+            </div>
+        </div>
+        <div>
+            <div class="center">
+                <div class="fixed-action-btn horizontal">
+                   <a href="buy" id="buy-btn" class="btn-floating btn-large waves-effect waves-light teal">
+                     <i class="large material-icons" title="Rent">attach_money</i>
+                   </a>
+                   <ul>
+                     <li><a href="#review" class="btn-floating yellow darken-1 review"><i class="material-icons" title="Write Review">format_quote</i></a></li>
+                     <li><a href="#contact" id="btn-message" class="btn-floating green"><i class="material-icons" title="Contact Seller">message</i></a></li>
+                     <li><a href="#add" id="btn-add" class="btn-floating red"><i class="material-icons" title="Add to Favorites">favorite_border</i></a></li>
+                   </ul>
+                 </div>
+            </div>
+              <!-- Modal Structure -->
+              <div id="modal-review" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                  <h4>Write a review</h4>
+                  <div class="center">
+                      <span id="review-rating">
+                          <i id="star-1" class="material-icons large review-rating-star">star_border</i>
+                          <i id="star-2" class="material-icons large review-rating-star">star_border</i>
+                          <i id="star-3" class="material-icons large review-rating-star">star_border</i>
+                          <i id="star-4" class="material-icons large review-rating-star">star_border</i>
+                          <i id="star-5" class="material-icons large review-rating-star">star_border</i>
+                      </span>
+                  </div>
+                  <div>
+                      <textarea id="review-message" class="materialize-textarea" length="500"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
+                  <a href="#!" class="modal-action waves-effect waves-green btn-flat ">Submit</a>
+                </div>
+              </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div th:replace="fragments/footer :: footer">
+        <!-- PlaceHolder -->
+    </div>
+</body>
+</html>

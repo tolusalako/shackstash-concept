@@ -1,0 +1,50 @@
+.chip > .material-icons{
+    color: #26a69a;
+}
+
+.chip {
+    background-color: white;
+    cursor: pointer;
+}
+
+.card-title .material-icons {
+  color: #FFB300;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+    color: #26a69a;
+}
+
+.price {
+    font-size: 110%;
+    font-style: oblique;
+    /*color: #B12704;*/
+    color: #AE4343;
+}
+
+.review-rating-star{
+    color: #FFB300;
+    cursor: pointer;
+}
+
+.carousel {
+  /*height: 70px !important;*/
+  width: 100% !important;
+}
+
+.thumb.material-icons {
+  color: #b2dfdb;
+}
+
+.thumb.material-icons.selected {
+    color: #26a69a;
+}
+
+#map{
+  height: 100%;
+  width: 100%;
+}
